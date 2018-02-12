@@ -22,19 +22,19 @@ public class PostAVideo {
 	   }
 	
 	 @Given("^Header is provided$")
-	    public void header_is_provided() throws Throwable {
+	    public void postV() throws Throwable {
 	        System.out.println("Header is provided");
 	    }
 
 	    @When("^Artist as \"([^\"]*)\",song as \"([^\"]*)\", publishdate as \"([^\"]*)\" and uri as \"([^\"]*)\"$")
-	    public void PostRequest(String artist, String song, String pubdate, String url) throws Throwable {
+	    public void postVDetails(String artist, String song, String pubdate, String url) throws Throwable {
 	       
 	    	String json = responsebody.JsonBodyvideo(song, artist, pubdate);
 	    	responsebody.Postmethod(url, json); 
 	    }
 
 	    @Then("^Expected Status code \"([^\"]*)\" should be returned$")
-	    public void StatusCode_validation(String strArg1) throws Throwable {
+	    public void postVCode(String strArg1) throws Throwable {
 	        
 	    	int code = responsebody.response.getStatusLine().getStatusCode();
 	        System.out.println(code);
@@ -42,7 +42,7 @@ public class PostAVideo {
 	    }
 
 	    @And("^Response body should have artist as \"([^\"]*)\", song as \"([^\"]*)\"$")
-	    public void validating_body(String Artist, String Song) throws Throwable {
+	    public void postVResponse(String Artist, String Song) throws Throwable {
 	    	String responseString = EntityUtils.toString(responsebody.response.getEntity(), "UTF-8");
 	    	System.out.println(responseString);
 	    	  JSONObject responseJson = new JSONObject(responseString);

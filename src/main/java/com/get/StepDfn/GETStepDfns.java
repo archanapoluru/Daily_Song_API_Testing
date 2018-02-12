@@ -28,24 +28,24 @@ public class GETStepDfns {
    }
 	 
    @Given("^Headers are supplied$")
-   public void headers_are_supplied() throws Throwable {
+   public void getV() throws Throwable {
        System.out.println("Header and apiurl is supplied");
    }
 
    @When("^GET Request is made to the API with \"([^\"]*)\"$")
-   public void get_request_is_made_to_the_api_with_something(String Url) throws Throwable {
+   public void getVList(String Url) throws Throwable {
        responsebody.Getmethod(Url);
    }
 
    @Then("^Expected status code is \"([^\"]*)\"$")
-   public void expected_status_code_is_something(String strArg1) throws Throwable {
+   public void getVListCode(String strArg1) throws Throwable {
        int code = responsebody.response.getStatusLine().getStatusCode();
        Assert.assertEquals(HttpStatus.SC_OK, code);
        System.out.println(strArg1);
    }
 
    @And("^Artists expected are \"([^\"]*)\", and \"([^\"]*)\"$")
-   public void artists_expected_are_something_and_something(String artist_1, String artist_2) throws Throwable {
+   public void getVListResponse(String artist_1, String artist_2) throws Throwable {
 	   
  	 String responseString = EntityUtils.toString(responsebody.response.getEntity(), "UTF-8");
  	 System.out.println(responseString);

@@ -23,18 +23,18 @@ public class PostAPlaylist {
 	
 	
 	 @Given("^Accept the content in JSON format$")
-	    public void accept_the_content_in_json_format() throws Throwable {
+	    public void postPL() throws Throwable {
 	        System.out.println("Body is in Json format");
 	    }
 
 	 @When("^POST request is performed with desc as \"([^\"]*)\", title as \"([^\"]*)\" and uri as \"([^\"]*)\"$")
-	    public void Post_to_Api(String strArg1, String strArg2, String strArg3) throws Throwable {
+	    public void postPLDetails(String strArg1, String strArg2, String strArg3) throws Throwable {
 		 String json = responsebody.JsonBodyPlaylist(strArg1, strArg2);
 	        responsebody.Postmethod(strArg3, json);
 	    }
 
 	    @Then("^Expected Status code \"([^\"]*)\" should return$")
-	    public void expected_status_code_something_should_return(String strArg1) throws Throwable {
+	    public void postPLCode(String strArg1) throws Throwable {
 	        int code = responsebody.response.getStatusLine().getStatusCode();
 	        Assert.assertEquals(HttpStatus.SC_CREATED, code);
 	    }
@@ -42,7 +42,7 @@ public class PostAPlaylist {
 	    
 
 	    @And("^Response body should have descrition as \"([^\"]*)\", title as \"([^\"]*)\"$")
-	    public void response_body_should_have_descrition_as_something_title_as_something(String desc, String title) throws Throwable {
+	    public void postPLResponse(String desc, String title) throws Throwable {
 	    	String responseString = EntityUtils.toString(responsebody.response.getEntity(), "UTF-8");
 	    	 System.out.println(responseString);
 	    	  JSONObject responseJson = new JSONObject(responseString);

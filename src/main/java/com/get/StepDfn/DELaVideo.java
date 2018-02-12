@@ -22,20 +22,20 @@ public class DELaVideo {
 	   }
 	
 	   @Given("^Header is supplied for DELETE$")
-	    public void header_is_supplied_for_delete() throws Throwable {
+	    public void deleteV() throws Throwable {
 	        System.out.println("Header is supplied");
 	    }
 
 
 	    @When("^Delete request is made with the \"([^\"]*)\"$")
-	    public void delete_request_is_made_with_the_something(String Url) throws Throwable {
+	    public void deleteVID(String Url) throws Throwable {
 	        responsebody.Deletemethod(Url);
 	    }
 
 	   
 
 	    @Then("^Expected response code is 204$")
-	    public void expected_response_code_is_204() throws Throwable {
+	    public void deleteVCode() throws Throwable {
 	        
 	    
 	    		int code = responsebody.response.getStatusLine().getStatusCode();
@@ -46,7 +46,7 @@ public class DELaVideo {
 	    }
 
 	    @And("^Expected response body is \"([^\"]*)\"$")
-	    public void expected_response_body_is_something(String strArg1) throws Throwable {
+	    public void deleteVResponse(String strArg1) throws Throwable {
 	        System.out.println(strArg1);
 	    }
 
