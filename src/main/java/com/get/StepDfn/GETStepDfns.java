@@ -3,6 +3,7 @@ package com.get.StepDfn;
 
 
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.fluent.ContentResponseHandler;
 import org.apache.http.util.EntityUtils;
@@ -48,11 +49,13 @@ public class GETStepDfns {
    public void getVListResponse(String artist_1, String artist_2) throws Throwable {
 	   
  	 String responseString = EntityUtils.toString(responsebody.response.getEntity(), "UTF-8");
+ 	 responseString = "{\"videos\":" + responseString + "}";
  	 System.out.println(responseString);
- 	  JSONObject responseJson = new JSONObject(responseString);
- 	  System.out.println(responseJson);
- 	  String artist1 = responsebody.ValidateJson(responseJson, "/data[0]/artist");
- 	  String artist2 = responsebody.ValidateJson(responseJson, "/data[1]/artist");
+ 	 
+ 	 JSONObject jsonObj = new JSONObject(responseString);
+ 	 String artist1 = jsonObj.getJSONArray("videos").getJSONObject(0).getString("artist");
+ 	 String artist2 = jsonObj.getJSONArray("videos").getJSONObject(1).getString("artist");
+
  	  System.out.println(artist1);
  	  System.out.println(artist2);
  	  Assert.assertEquals(artist_1, artist1);
